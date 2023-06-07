@@ -433,7 +433,8 @@ __install_mongodb_ubuntu() {
         __install_packages mongodb-org
     elif [[ "$_OS_CODENAME" == "jammy" ]]; then
         # installation of 4.2 on 22.04 works but needs libssl1.1 which needs some extra hackiness
-        __add_deb_repo "deb http://security.ubuntu.com/ubuntu focal-security main"
+        __add_deb_repo "deb http://security.ubuntu.com/ubuntu focal-security main" \
+            "libssl1-$1"
         __install_packages libssl1.1
         __add_deb_repo "deb [ arch=$(dpkg --print-architecture) ] http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/$1 multiverse" \
             "mongodb-org-$1" \
